@@ -33,3 +33,16 @@ def train(x,y, a, lr=0.01):
 	A -= greadient * lr
 	A = np.clip(A,0,5)
 	return A
+
+def loss(x,y):
+	global a
+	X = np.asarray(x.to_numpy(), dtype=np.float32)
+	Y = np.asarray(y.to_numpy(), dtype=np.float32)
+	A = cp.asarray(a, dtype=np.float32)
+
+	sqnorms = np.sum(X**2, axis=1)
+	K = np.exp(-gama*(sqnorms[:,None]+sqnorms[None,:]-2*X@X.T))
+	Q=(Y[:,None]*Y[None,:])*K
+
+	loss = 0.5* (A@Q@A) - np.sum(A)
+	return loss
