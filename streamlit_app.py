@@ -50,7 +50,7 @@ def loss(x,y):
 def predictone(X,y,a):
 	X = np.asarray(X)
 	Y = np.asarray(y)
-	train = np.asarray(xtrian)
+	train = np.asarray(xtrain)
 	A = np.asarray(a, dtype=np.float32)
 	
 	sqx = cp.sum(X**2, axis=1)
