@@ -46,3 +46,26 @@ def loss(x,y):
 
 	loss = 0.5* (A@Q@A) - np.sum(A)
 	return loss
+
+def predictone(X,y,a):
+	X = np.asarray(X)
+	Y = np.asarray(y)
+	train = np.asarray(xtrian)
+	A = np.asarray(a, dtype=np.float32)
+	
+	sqx = cp.sum(X**2, axis=1)
+	sqt = cp.sum(train ** 2, axis =1 )
+	K = cp.exp(-gama*(sqx[:,None]+ sqt[None,:]-2*X@train.T))
+	scores = K@(A*Y)
+	return np.where(score>=0,1,-1)
+
+losses = []
+acc = []
+y6 = pd.Series(np.where(ytrain==6,1,-1), index = ytrain.index)
+y6t = pd.Series(np.where(ytest==6,1,-1), index = ytest.index)
+
+for i in range(1000):
+	a = train(xtrain,y6,a)
+	acc.append(accuracy_score(predictone(xtest,y6,a).get(), y6t))
+	losses.append(float(loss(xtrain, y6)))
+st.plotly_chart(losses)
