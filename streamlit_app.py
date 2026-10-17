@@ -66,6 +66,6 @@ y6t = pd.Series(np.where(ytest==6,1,-1), index = ytest.index)
 
 for i in range(1000):
 	a = train(xtrain,y6,a)
-	acc.append(accuracy_score(predictone(xtest,y6,a).get(), y6t))
+	acc.append(accuracy_score(predictone(xtest,y6,a), y6t))
 	losses.append(float(loss(xtrain, y6)))
 st.plotly_chart(losses)
