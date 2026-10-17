@@ -1,7 +1,7 @@
 import kagglehub
 import pandas as pd
-form sklearn.metrics import accuracy_score
-form sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 import math
 import matplotlib.pyplot as plt
 
