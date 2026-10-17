@@ -4,6 +4,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 
 path = kagglehub.dataset_download("yasserh/wine-quality-dataset", "WineQT.csv")
 df = pd.read_csv(path)
