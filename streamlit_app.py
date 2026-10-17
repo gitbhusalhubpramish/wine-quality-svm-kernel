@@ -71,4 +71,32 @@ for i in range(1000):
 	losses.append(float(loss(xtrain, y6)))
 st.line_chart(losses)
 
+def multitrain(epoch, lr=0.01):
+	y = np.asarray(ytrain.to_numpy())
+	yt= np.asarray(ytest.to_numpy())
+	uy = np.unique(y)
+	yc = np.stack([np.where(y==i,1,-1) for i in uy])
+	ac = np.zeros_like(yc, dtype=np.float32)
+	X = np.asarray(xtrain,to_numpy(), dtype=cp.float32)
+	
+	sqx = np.sum(X**2, axis=1)
+	K = cp.exp(-gama*(sqx[:,None]+sqx[None,:]-2*X@X.T))
+	losses = []
+	acc = []
+	acct = []
 
+	for i in range(epoch):
+		ay = ac * yc
+		kay = ay@K
+
+		da = yc*kay-1
+		ac -= lr*da
+		ac = cp.clip(ac,0,5)
+
+		acc.append(accuracy_score(predict(ac,xtrain), y))
+		acct.append(accuracy_score(prediction(ac,xtest), yt))
+
+		loss = 0.5*np.sum(ay*kay, axis=1) - np.sum(ac)
+		losses.append(loss)
+
+	return ac, losses, np.asarray(acc)*100, np.asarray(acct)*100
