@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 path = kagglehub.dataset_download("yasserh/wine-quality-dataset", "WineQT.csv")
 df = pd.read_csv(path)
 
+x = df[df.columns.drop(["Id", "quality"])]
+y = df["quality"]
+
 xtrain,xtest,ytrain,ytest = train_test_split(x,y,random_state=42, test_size=0.2)
 
 np.random.seed(42)
