@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+import streamlit as st
 
 path = kagglehub.dataset_download("yasserh/wine-quality-dataset", "WineQT.csv")
 df = pd.read_csv(path)
@@ -69,3 +70,5 @@ for i in range(1000):
 	acc.append(accuracy_score(predictone(xtest,y6,a), y6t))
 	losses.append(float(loss(xtrain, y6)))
 st.plotly_chart(losses)
+
+
