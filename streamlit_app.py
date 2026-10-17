@@ -38,7 +38,7 @@ def loss(x,y):
 	global a
 	X = np.asarray(x.to_numpy(), dtype=np.float32)
 	Y = np.asarray(y.to_numpy(), dtype=np.float32)
-	A = cp.asarray(a, dtype=np.float32)
+	A = np.asarray(a, dtype=np.float32)
 
 	sqnorms = np.sum(X**2, axis=1)
 	K = np.exp(-gama*(sqnorms[:,None]+sqnorms[None,:]-2*X@X.T))
@@ -53,9 +53,9 @@ def predictone(X,y,a):
 	train = np.asarray(xtrain)
 	A = np.asarray(a, dtype=np.float32)
 	
-	sqx = cp.sum(X**2, axis=1)
-	sqt = cp.sum(train ** 2, axis =1 )
-	K = cp.exp(-gama*(sqx[:,None]+ sqt[None,:]-2*X@train.T))
+	sqx = np.sum(X**2, axis=1)
+	sqt = np.sum(train ** 2, axis =1 )
+	K = np.exp(-gama*(sqx[:,None]+ sqt[None,:]-2*X@train.T))
 	scores = K@(A*Y)
 	return np.where(score>=0,1,-1)
 
