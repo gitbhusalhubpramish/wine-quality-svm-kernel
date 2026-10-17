@@ -57,7 +57,7 @@ def predictone(X,y,a):
 	sqt = np.sum(train ** 2, axis =1 )
 	K = np.exp(-gama*(sqx[:,None]+ sqt[None,:]-2*X@train.T))
 	scores = K@(A*Y)
-	return np.where(score>=0,1,-1)
+	return np.where(scores>=0,1,-1)
 
 losses = []
 acc = []
