@@ -161,7 +161,7 @@ def predict(a,x):
 progress = queue.Queue()
 chart1 = st.empty()
 chart2= st.empty()
-loss1,loss2 = [].[]
+loss1,loss2 = [],[]
 with ThreadPoolExecutor() as executor:
 	f1=executor.submit(singletrain, progress)
 	f2=executor.submit(multitrain,1000, progress)
