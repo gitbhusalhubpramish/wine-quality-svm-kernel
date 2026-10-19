@@ -90,12 +90,12 @@ def predictone(X,y,a):
 	scores = k@(A*Y)
 	return np.where(scores>=0,1,-1)
 
-losses = []
-acc = []
-y6 = pd.Series(np.where(ytrain==6,1,-1), index = ytrain.index)
-y6t = pd.Series(np.where(ytest==6,1,-1), index = ytest.index)
-
 def singletrain():
+	losses = []
+	acc = []
+	y6 = pd.Series(np.where(ytrain==6,1,-1), index = ytrain.index)
+	y6t = pd.Series(np.where(ytest==6,1,-1), index = ytest.index)
+
 	chart = st.empty()
 
 	for i in range(1000):
