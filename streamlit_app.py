@@ -105,7 +105,7 @@ def singletrain(progress):
 		acc.append(accuracy_score(predictone(xtest,y6,a), y6t))
 		losses.append(float(loss(xtrain, y6)))
 		#chart.line_chart(losses)
-		progress.put(("single", losses.copy()))
+		progress.put(("single", losses[-1]))
 #st.line_chart(losses)
 
 #multichart = st.empty()
@@ -136,7 +136,7 @@ def multitrain(epoch, progress, lr=0.01):
 
 		loss = 0.5*np.sum(ay*kay, axis=1) - np.sum(ac)
 		losses.append(loss)
-		progress.put(("multi", losses.copy()))
+		progress.put(("multi", loss))
 		#multichart.line_chart(losses)
 
 	return ac, losses, np.asarray(acc)*100, np.asarray(acct)*100
