@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
+st.write('''## Data(set)''')
+st.write('''This project uses [Red wine quality dataset] in kaggle. This dataset has some information about wines and their quality. We have:''')
+
 path = kagglehub.dataset_download("yasserh/wine-quality-dataset", "WineQT.csv")
 df = pd.read_csv(path)
 
@@ -14,6 +17,9 @@ x = df[df.columns.drop(["Id", "quality"])]
 y = df["quality"]
 
 xtrain,xtest,ytrain,ytest = train_test_split(x,y,random_state=42, test_size=0.2)
+
+st.write('''Total rows(data):''', len(df))
+st.write('''Qnique quality:''', st.table(pd.Series(np.unique(df, return_counts=True)[1], index = np.unique(df,return_count=True)[0])))
 
 np.random.seed(42)
 a = np.full(len(xtrain),0)
@@ -119,3 +125,4 @@ def predict(a,x):
 
 A, losses, acc,acct = multitrain(1000)
 st.line_chart(losses)
+
