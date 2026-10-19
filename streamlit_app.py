@@ -151,7 +151,7 @@ def predict(a,x):
 	z = np.argmax(z,axis=0)
 	return uy[z]
 
-A, losses, acc,acct = multitrain(1000)
+#A, losses, acc,acct = multitrain(1000)
 #st.line_chart(losses)
 
 
