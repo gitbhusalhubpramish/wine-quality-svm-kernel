@@ -142,7 +142,7 @@ def predict(a,x):
 	uy = np.unique(y)
 	yc = np.stack([np.where(y==i, 1,-1) for i in uy])
 	Xt = np.asarray(xtrain.to_numpy(), dtype = np.float32)
-	X = np.asarray(x.to_numpy(), dtype=np.folat32)
+	X = np.asarray(x.to_numpy(), dtype=np.float32)
 	
 	k = K(X,Xt,y)
 	
