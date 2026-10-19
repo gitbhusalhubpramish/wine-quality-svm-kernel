@@ -35,7 +35,7 @@ def K(x,xt,y):
 	sqnorms = np.sum(x**2, axis=1)
 	sqtrain = np.sum(xt**2, axis=1)
 
-	k = np.exp(-gama*(sqnorms[:,None] + sqtrain(None,:) -2* x@xt.T))
+	k = np.exp(-gama*(sqnorms[:,None] + sqtrain[None,:] -2* x@xt.T))
 
 def train(x,y, a, lr=0.01):
 	X = np.asarray(x.to_numpy(), dtype = np.float32)
