@@ -36,7 +36,7 @@ st.markdown(r'''- $y_i$ is the lable of support vectors''')
 st.markdown(r'''- 
 
 $$
-K(x_i,x) = e^(-\gama ||x_i-x||^2)
+K(x_i,x) = e^{- \gama ||x_i-x||^2}
 $$''')
 
 
