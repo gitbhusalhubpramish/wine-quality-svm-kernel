@@ -32,8 +32,10 @@ z = \sum_i \alpha_i y_i K(x_i,x)
 $$
 ''')
 st.write('''**Where**''')
-st.write('''- y_i is the lable of support vectors''')
-st.markdown(r'''- $$
+st.markdown(r'''- $y_i$ is the lable of support vectors''')
+st.markdown(r'''- 
+
+$$
 K(x_i,x) = e^(-\gama ||x_i-x||^2)
 $$''')
 
