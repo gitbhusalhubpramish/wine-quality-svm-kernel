@@ -39,7 +39,7 @@ The work flow of the project looks like this:
 - **Training:** Here the greadient is calculated and the parameter are updated accordingly by 
 
 $$
-\alpha = \alpha - \eta \frac{\partial \mathcal}{\partial \alpha}
+\alpha = \alpha - \eta \frac{\partial \mathcal{L}}{\partial \alpha}
 $$
 
 - **Loss calculation:** This is done just to see how model is learning the graph in the preview page is the loss graph multiple time.
