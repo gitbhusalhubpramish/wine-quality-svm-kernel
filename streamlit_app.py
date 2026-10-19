@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 from concurrent.futures import ThreadPoolExecutor
+import queue
 
 st.write('''## Data(set)''')
 st.write('''This project uses [Red wine quality dataset] in kaggle. This dataset has some information about wines and their quality. We have:''')
@@ -90,25 +91,26 @@ def predictone(X,y,a):
 	scores = k@(A*Y)
 	return np.where(scores>=0,1,-1)
 
-def singletrain():
+def singletrain(progress):
 	global a
 	losses = []
 	acc = []
 	y6 = pd.Series(np.where(ytrain==6,1,-1), index = ytrain.index)
 	y6t = pd.Series(np.where(ytest==6,1,-1), index = ytest.index)
 
-	chart = st.empty()
+	#chart = st.empty()
 
 	for i in range(1000):
 		a = train(xtrain,y6,a)
 		acc.append(accuracy_score(predictone(xtest,y6,a), y6t))
 		losses.append(float(loss(xtrain, y6)))
-		chart.line_chart(losses)
+		#chart.line_chart(losses)
+		progress.put(("single", losses.copy()))
 #st.line_chart(losses)
 
-multichart = st.empty()
+#multichart = st.empty()
 
-def multitrain(epoch, lr=0.01):
+def multitrain(epoch, progress, lr=0.01):
 	y = np.asarray(ytrain.to_numpy())
 	yt= np.asarray(ytest.to_numpy())
 	uy = np.unique(y)
@@ -134,7 +136,8 @@ def multitrain(epoch, lr=0.01):
 
 		loss = 0.5*np.sum(ay*kay, axis=1) - np.sum(ac)
 		losses.append(loss)
-		multichart.line_chart(losses)
+		progress.put(("multi", losses.copy()))
+		#multichart.line_chart(losses)
 
 	return ac, losses, np.asarray(acc)*100, np.asarray(acct)*100
 
@@ -155,10 +158,21 @@ def predict(a,x):
 #A, losses, acc,acct = multitrain(1000)
 #st.line_chart(losses)
 
-
+progress = queue.Queue()
+chart1 = st.empty()
+chart2= st.empty()
 with ThreadPoolExecutor() as executor:
-	f1=executor.submit(singletrain)
-	f2=executor.submit(multitrain,1000)
+	f1=executor.submit(singletrain, progress)
+	f2=executor.submit(multitrain,1000, progress)
 	
+	while not f1.done() or not f2.done() or not progress.empty():
+		try:
+			name, values = progress.get(timeout=0.1)
+			if name == "single":
+				chart1.line_chart(values)
+			else:
+				chart2.line_chart(values[1])
+		except queue.Empty:
+			pass
 	f1,result()
 	f2.result()
