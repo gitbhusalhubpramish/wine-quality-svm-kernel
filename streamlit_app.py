@@ -6,7 +6,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
-from concurrent.features import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 
 st.write('''## Data(set)''')
 st.write('''This project uses [Red wine quality dataset] in kaggle. This dataset has some information about wines and their quality. We have:''')
