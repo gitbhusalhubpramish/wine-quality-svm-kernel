@@ -100,3 +100,22 @@ def multitrain(epoch, lr=0.01):
 		losses.append(loss)
 
 	return ac, losses, np.asarray(acc)*100, np.asarray(acct)*100
+
+def predict(a,x):
+	y = np.asarray(ytrain.to_numpy())
+	uy = np.unique(y)
+	yc = np.stack([np.where(y==i, 1,-1) for i in uy])
+	Xt = np.asarray(xtrain.to_numpy(), dtype = np.float32)
+	X = np.asarray(x.to_numpy(), dtype=np.folat32)
+	
+	sqx = np.sum(X**2, axis =1)
+	sqt = np.sum(Xt**2, axis=1)
+	K = np.exp(-gama*(sqx[:,None]+sqt[None, :]-2*X@Xt.T))
+	
+	ay = a*yc
+	z = ay@K.T
+	z = np.argmax(z,axis=0)
+	return uy[z]
+
+A, losses, acc,acct = multitrain(1000)
+st.line_chart(losses)
