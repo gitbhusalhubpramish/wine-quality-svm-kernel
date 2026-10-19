@@ -24,6 +24,20 @@ st.table(pd.Series(np.unique(y, return_counts=True)[1], index = np.unique(y,retu
 st.write('''- training sample:''', len(xtrain))
 st.write('''- testing sample:''', len(xtest))
 
+st.write('''## Alogrithm''')
+st.write('''This uses SVM Kernel to predict the lable fo the data. The parameter of the model is just one variable called alpha($\alpha$). The prediction through this algorithm looks like this:''')
+stmarkdown('''
+$$
+z = K \alpha y
+$$
+''')
+st.write('''**Where**''')
+st.write('''- y is the lable of support vectors''')
+st.markdown('''- $$
+K = (sv_x-x)**2
+$$''')
+
+
 np.random.seed(42)
 a = np.full(len(xtrain),0)
 b = np.random.rand()
@@ -93,7 +107,7 @@ def multitrain(epoch, lr=0.01):
 	uy = np.unique(y)
 	yc = np.stack([np.where(y==i,1,-1) for i in uy])
 	ac = np.zeros_like(yc, dtype=np.float32)
-	X = np.asarray(xtrain,to_numpy(), dtype=cp.float32)
+	X = np.asarray(xtrain.to_numpy(), dtype=cp.float32)
 	
 	k = K(X,X,y)
 	losses = []
