@@ -159,7 +159,9 @@ def predict(a,x):
 #st.line_chart(losses)
 
 progress = queue.Queue()
+st.write('''## Loss of algo 1''')
 chart1 = st.empty()
+st.write('''## Loss of algo 2''')
 chart2= st.empty()
 loss1,loss2 = [],[]
 with ThreadPoolExecutor() as executor:
