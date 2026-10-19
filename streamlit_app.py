@@ -105,7 +105,7 @@ def singletrain():
 		chart.line_chart(losses)
 #st.line_chart(losses)
 
-multichart = st.empty
+multichart = st.empty()
 
 def multitrain(epoch, lr=0.01):
 	y = np.asarray(ytrain.to_numpy())
