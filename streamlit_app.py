@@ -126,7 +126,7 @@ def multitrain(epoch, lr=0.01):
 
 		da = yc*kay-1
 		ac -= lr*da
-		ac = cp.clip(ac,0,5)
+		ac = np.clip(ac,0,5)
 
 		acc.append(accuracy_score(predict(ac,xtrain), y))
 		acct.append(accuracy_score(prediction(ac,xtest), yt))
