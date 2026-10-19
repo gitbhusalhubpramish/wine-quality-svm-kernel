@@ -91,6 +91,7 @@ def predictone(X,y,a):
 	return np.where(scores>=0,1,-1)
 
 def singletrain():
+	global a
 	losses = []
 	acc = []
 	y6 = pd.Series(np.where(ytrain==6,1,-1), index = ytrain.index)
