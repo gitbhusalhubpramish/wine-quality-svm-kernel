@@ -129,7 +129,7 @@ def multitrain(epoch, lr=0.01):
 		ac = np.clip(ac,0,5)
 
 		acc.append(accuracy_score(predict(ac,xtrain), y))
-		acct.append(accuracy_score(prediction(ac,xtest), yt))
+		acct.append(accuracy_score(predict(ac,xtest), yt))
 
 		loss = 0.5*np.sum(ay*kay, axis=1) - np.sum(ac)
 		losses.append(loss)
