@@ -160,8 +160,10 @@ def predict(a,x):
 
 progress = queue.Queue()
 st.write('''## Loss of algo 1''')
+st.write('''This algorithm is trainied in svm kernel rbf. It only predict one label of the data(guesses whether a data has the label x or not.) The loss is given in the chart. It's pretty slow :)''')
 chart1 = st.empty()
 st.write('''## Loss of algo 2''')
+st.write('''This algorithm uses multiple alogrithm 1 where each predict the label of x and chooses the label with highest probability. The loss is given in the chart. It's slower than algorithm 1:''')
 chart2= st.empty()
 loss1,loss2 = [],[]
 with ThreadPoolExecutor() as executor:
