@@ -26,7 +26,7 @@ st.write('''- testing sample:''', len(xtest))
 
 st.write('''## Alogrithm''')
 st.write('''This uses SVM Kernel to predict the lable fo the data. The parameter of the model is just one variable called alpha($\alpha$). The prediction through this algorithm looks like this:''')
-stmarkdown('''
+st.markdown('''
 $$
 z = K \alpha y
 $$
