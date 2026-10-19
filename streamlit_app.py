@@ -161,6 +161,7 @@ def predict(a,x):
 progress = queue.Queue()
 chart1 = st.empty()
 chart2= st.empty()
+loss1,loss2 = [].[]
 with ThreadPoolExecutor() as executor:
 	f1=executor.submit(singletrain, progress)
 	f2=executor.submit(multitrain,1000, progress)
@@ -169,9 +170,12 @@ with ThreadPoolExecutor() as executor:
 		try:
 			name, values = progress.get(timeout=0.1)
 			if name == "single":
-				chart1.line_chart(values)
+				loss1.append(values)
+				chart1.line_chart(loss1)
 			else:
-				chart2.line_chart(values[1])
+				loss2.append(values[1])
+				chart2.line_chart(loss2)
+			
 		except queue.Empty:
 			pass
 	f1.result()
