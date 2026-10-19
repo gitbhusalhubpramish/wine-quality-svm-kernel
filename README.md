@@ -19,3 +19,14 @@ This project was made by me to understand SVM RBF Kernel from scratch so it has 
 - Multi-class classification
 - Data Visulization.
 
+## Tech-Stack
+
+This project uses python liberies used for datascienct - Visulization, calculation and data manipulation. I've used:
+
+- Numpy for calculation
+- matplotlib and streamlit for data visulization
+- pandas for CSV and data manipulation
+- sk-learn for accuracy calculation and datasplit
+- multithreading and multiprocressing
+
+
