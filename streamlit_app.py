@@ -20,7 +20,7 @@ xtrain,xtest,ytrain,ytest = train_test_split(x,y,random_state=42, test_size=0.2)
 
 st.write('''Total rows(data):''', len(df))
 st.write('''Qnique quality:''')
-st.table(pd.Series(np.unique(df, return_counts=True)[1], index = np.unique(df,return_counts=True)[0]))
+st.table(pd.Series(np.unique(y, return_counts=True)[1], index = np.unique(y,return_counts=True)[0]))
 
 np.random.seed(42)
 a = np.full(len(xtrain),0)
