@@ -157,5 +157,8 @@ def predict(a,x):
 
 
 with ThreadPoolExecutor() as executor:
-	executor.submit(singletrain())
-	executor.submit(multitrain(1000))
+	f1=executor.submit(singletrain)
+	f2=executor.submit(multitrain,1000)
+	
+	f1,result()
+	f2.result()
