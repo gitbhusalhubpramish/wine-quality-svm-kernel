@@ -29,4 +29,18 @@ This project uses python liberies used for datascienct - Visulization, calculati
 - sk-learn for accuracy calculation and datasplit
 - multithreading and multiprocressing
 
+## Work-flow
 
+The work flow of the project looks like this:
+
+- **Fetch data:** Here the data is fetched from kaggle dataset.
+- **Data Shepration:** Here the algorithm sharate the data into 2(4) parts for training and testing for each.
+- **Parameter initlization:** Here the model's parameter is initlized all to zero.
+- **Training:** Here the greadient is calculated and the parameter are updated accordingly by 
+
+$$
+\alpha = \alpha - \eta \frac{\partial \mathcal}{\partial \alpha}
+$$
+
+- **Loss calculation:** This is done just to see how model is learning the graph in the preview page is the loss graph multiple time.
+- **repeat:** repeat to train and calculate error multiple times(epoch)
