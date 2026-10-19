@@ -78,11 +78,14 @@ acc = []
 y6 = pd.Series(np.where(ytrain==6,1,-1), index = ytrain.index)
 y6t = pd.Series(np.where(ytest==6,1,-1), index = ytest.index)
 
+chart = st.empty()
+
 for i in range(1000):
 	a = train(xtrain,y6,a)
 	acc.append(accuracy_score(predictone(xtest,y6,a), y6t))
 	losses.append(float(loss(xtrain, y6)))
-st.line_chart(losses)
+	chart.line_chart(losses)
+#st.line_chart(losses)
 
 def multitrain(epoch, lr=0.01):
 	y = np.asarray(ytrain.to_numpy())
