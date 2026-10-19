@@ -6,4 +6,16 @@ In this project I have applied SVM RBF Kernel from scratch in [Red wine quality]
 
 This is how this algorithm creates boundries in data - It is in jupiter notebook in this project - It's just the visulization of only 2 feature.
 
+## Small intro to SVM
+
+SVM is a supervised regression bashed classification meachine learning model which uses support vector and decision line to classify data. The decision line shaprate the data into two parts. The approch I used here transfers the data into higher dimention and classify through decision line. The transfer is called Kernel. There are 4 kernel I have used RBF.
+
+## Feature
+
+This project was made by me to understand SVM RBF Kernel from scratch so it has SVM RBF Kernel applied from scratch. But also:
+
+- SVM RBF Kernel from scratch.
+- Parellel CPU processing
+- Multi-class classification
+- Data Visulization.
 
