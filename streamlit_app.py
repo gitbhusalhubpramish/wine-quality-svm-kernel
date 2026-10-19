@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 import queue
 
 st.write('''## Data(set)''')
-st.write('''This project uses [Red wine quality dataset] in kaggle. This dataset has some information about wines and their quality. We have:''')
+st.write('''This project uses [Red wine quality dataset](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset) in kaggle. This dataset has some information about wines and their quality. We have:''')
 
 path = kagglehub.dataset_download("yasserh/wine-quality-dataset", "WineQT.csv")
 df = pd.read_csv(path)
