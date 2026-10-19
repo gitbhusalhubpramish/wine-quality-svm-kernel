@@ -173,7 +173,7 @@ with ThreadPoolExecutor() as executor:
 				loss1.append(values)
 				chart1.line_chart(loss1)
 			else:
-				loss2.append(values[1])
+				loss2.append(values)
 				chart2.line_chart(loss2)
 			
 		except queue.Empty:
