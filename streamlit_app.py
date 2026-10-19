@@ -95,15 +95,14 @@ def multitrain(epoch, lr=0.01):
 	ac = np.zeros_like(yc, dtype=np.float32)
 	X = np.asarray(xtrain,to_numpy(), dtype=cp.float32)
 	
-	sqx = np.sum(X**2, axis=1)
-	K = cp.exp(-gama*(sqx[:,None]+sqx[None,:]-2*X@X.T))
+	k = K(X,X,y)
 	losses = []
 	acc = []
 	acct = []
 
 	for i in range(epoch):
 		ay = ac * yc
-		kay = ay@K
+		kay = ay@k
 
 		da = yc*kay-1
 		ac -= lr*da
@@ -124,12 +123,10 @@ def predict(a,x):
 	Xt = np.asarray(xtrain.to_numpy(), dtype = np.float32)
 	X = np.asarray(x.to_numpy(), dtype=np.folat32)
 	
-	sqx = np.sum(X**2, axis =1)
-	sqt = np.sum(Xt**2, axis=1)
-	K = np.exp(-gama*(sqx[:,None]+sqt[None, :]-2*X@Xt.T))
+	k = K(X,Xt,y)
 	
 	ay = a*yc
-	z = ay@K.T
+	z = ay@k.T
 	z = np.argmax(z,axis=0)
 	return uy[z]
 
