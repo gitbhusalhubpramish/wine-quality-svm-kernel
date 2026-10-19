@@ -30,15 +30,21 @@ b = np.random.rand()
 
 gama = 1
 
+@st.cache_data
+def K(x,xt,y):
+	sqnorms = np.sum(x**2, axis=1)
+	sqtrain = np.sum(xt**2, axis=1)
+
+	k = np.exp(-gama*(sqnorms[:,None] + sqtrain(None,:) -2* x@xt.T))
+
 def train(x,y, a, lr=0.01):
 	X = np.asarray(x.to_numpy(), dtype = np.float32)
 	Y = np.asarray(y.to_numpy(), dtype = np.float32)
 	A = np.asarray(a, dtype=np.float32)
 
-	sqnorms = np.sum(X**2, axis=1)
-	K = np.exp(-gama * (sqnorms[:,None]+ sqnorms[None,:] - 2*X@X.T))
+	k = K(X,X,Y)
 
-	Q = (Y[:,None]* Y[None, :]) * K
+	Q = (Y[:,None]* Y[None, :]) * k
 	greadient = Q@A-1
 	A -= greadient * lr
 	A = np.clip(A,0,5)
@@ -50,9 +56,8 @@ def loss(x,y):
 	Y = np.asarray(y.to_numpy(), dtype=np.float32)
 	A = np.asarray(a, dtype=np.float32)
 
-	sqnorms = np.sum(X**2, axis=1)
-	K = np.exp(-gama*(sqnorms[:,None]+sqnorms[None,:]-2*X@X.T))
-	Q=(Y[:,None]*Y[None,:])*K
+	k = K(X,X,y)
+	Q=(Y[:,None]*Y[None,:])*k
 
 	loss = 0.5* (A@Q@A) - np.sum(A)
 	return loss
@@ -63,10 +68,8 @@ def predictone(X,y,a):
 	train = np.asarray(xtrain)
 	A = np.asarray(a, dtype=np.float32)
 	
-	sqx = np.sum(X**2, axis=1)
-	sqt = np.sum(train ** 2, axis =1 )
-	K = np.exp(-gama*(sqx[:,None]+ sqt[None,:]-2*X@train.T))
-	scores = K@(A*Y)
+	k = K(X,train,Y)
+	scores = k@(A*Y)
 	return np.where(scores>=0,1,-1)
 
 losses = []
