@@ -25,16 +25,16 @@ st.write('''- training sample:''', len(xtrain))
 st.write('''- testing sample:''', len(xtest))
 
 st.write('''## Alogrithm''')
-st.write('''This uses SVM Kernel to predict the lable fo the data. The parameter of the model is just one variable called alpha($\alpha$). The prediction through this algorithm looks like this:''')
-st.markdown('''
+st.markdown(r'''This uses SVM Kernel to predict the lable fo the data. The parameter of the model is just one variable called alpha($\alpha$). The prediction through this algorithm looks like this:''')
+st.markdown(r'''
 $$
-z = K \alpha y
+z = \sum_i \alpha_i y_i K(x_i,x)
 $$
 ''')
 st.write('''**Where**''')
-st.write('''- y is the lable of support vectors''')
-st.markdown('''- $$
-K = (sv_x-x)**2
+st.write('''- y_i is the lable of support vectors''')
+st.markdown(r'''- $$
+K(x_i,x) = e^(-\gama ||x_i-x||^2)
 $$''')
 
 
