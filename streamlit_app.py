@@ -174,5 +174,5 @@ with ThreadPoolExecutor() as executor:
 				chart2.line_chart(values[1])
 		except queue.Empty:
 			pass
-	f1,result()
+	f1.result()
 	f2.result()
