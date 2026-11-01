@@ -44,3 +44,15 @@ $$
 
 - **Loss calculation:** This is done just to see how model is learning the graph in the preview page is the loss graph multiple time.
 - **repeat:** repeat to train and calculate error multiple times(epoch)
+
+## So, What did I learn?
+
+I had made this project to learn SVM kernel from scratch. Of cource I had learnt this :) but other stuff too like:
+
+- SVM Kernel
+- transformation through matrix (kernel)
+- calcus
+- Ligrange maximization
+- data visulization and plotting
+
+
