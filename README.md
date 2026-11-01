@@ -4,7 +4,7 @@ In this project I have applied SVM RBF Kernel from scratch in [Red wine quality]
 
 <img src="visual.jpg"/>
 
-This is how this algorithm creates boundries in data - It is in jupiter notebook in this project - It's just the visulization of only 2 feature.
+This is how this algorithm creates boundries in data - It is in jupiter notebook in this project - It's just the visulization of only 2 feature. You can see the web preview through this [link](https://wine-quality-svm-kernel.streamlit.app/).
 
 ## Small intro to SVM
 
